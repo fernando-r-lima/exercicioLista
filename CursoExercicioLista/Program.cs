@@ -7,11 +7,6 @@ namespace CursoExercicioLista
     class Program
     {
 
-        //IMCOMPLETO:   Exercício pdf AULA 78
-        //              terminar depois de aprender proporties e implementar
-        //              o condicionamento do id no get.
-        //              depois, ainda implementar a função de aumento de salário
-
         static void Main(string[] args)
         {
             List<Employee> employeesList = new List<Employee>();
@@ -34,6 +29,22 @@ namespace CursoExercicioLista
                 employeesList.Add(new Employee(id, name, salary));
             }
 
+            Console.Write("Enter the employee id that will have salary increase: ");
+            int idAumento = int.Parse(Console.ReadLine());
+
+            Employee employee = employeesList.Find(x => x.Id == idAumento);
+            if (employee == null)
+            {
+                Console.WriteLine("This id does not exist!");
+            }
+            else
+            {
+                Console.Write("Enter the percentage: ");
+                double percentAumento = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                employee.IncreaseSalary(percentAumento);
+            }
+
+            Console.WriteLine();
             Console.WriteLine("Updated list of employess:");
             foreach (Employee obj in employeesList)
             {
